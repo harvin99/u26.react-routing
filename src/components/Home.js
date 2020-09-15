@@ -8,7 +8,8 @@ export default function Home(props){
 
     axios.get('https://blog-api-tvh.herokuapp.com/api/blogs')
       .then(result => {
-        setBlogs(result.data.blogs)
+        
+        setBlogs(result.data.results)
       })
       .catch(error => {
         console.log(error)

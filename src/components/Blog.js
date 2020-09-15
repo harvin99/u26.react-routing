@@ -12,18 +12,12 @@ export default function Blog(props) {
 
     axios.get('https://blog-api-tvh.herokuapp.com/api/blogs')
       .then(result => {
-        setBlogs(result.data.blogs)
+        setBlogs(result.data.results)
       })
       .catch(error => {
         console.log(error)
       })
   return (
-    // <div>
-    //   <h2>Blog page</h2>
-    //   {blogs.map((blog, index) => (
-    //     <BlogCard article = {blog} />
-    //   ))}
-    // </div>
     <List
       itemLayout="vertical"
       size="large"

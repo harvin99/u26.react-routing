@@ -14,9 +14,6 @@ import BlogDetail from './components/BlogDetail'
 
 import "./App.css";
 
-
-
-
 function App() {
   return (
     <Router>
