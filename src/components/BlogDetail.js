@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
-import axios from 'axios'
-
+import axios from './axios'
 
 import 'antd/dist/antd.css';
 
 import './BlogDetailStyle.css'
 
-export default function Blog(props) {
+export default function BlogDetail({fetchUrl}) {
 
   let { id } = useParams();
 
   const [blog, setBlog] = useState({})
   
-   
-  axios.get(`https://blog-api-tvh.herokuapp.com/api/blogs/${id}`)
-      .then(result => {
-        setBlog(result.data.blog)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  useEffect(() => {
+    async function fetchData(){
+      const request = await axios.get(`/${fetchUrl}/${id}`)
+      setBlog(request.data.blog)
+      return request
+    }
+    fetchData()
+  }, [fetchUrl]) 
   return (
     <div class="blog-show">
       <div class="head_wallpaper"></div>

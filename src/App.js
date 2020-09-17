@@ -25,9 +25,11 @@ function App() {
               <About />
             </Route>
             <Route exact path="/blog"> 
-              <Blog />
+              <Blog fetchUrl = "/blogs" />
             </Route>
-            <Route exact path ="/blog/:id" component={BlogDetail}></Route>
+            <Route exact path ="/blog/:id" >
+              <BlogDetail fetchUrl = "/blogs"/>
+            </Route>
             <Route  exact path="/">
               <Home />
             </Route>

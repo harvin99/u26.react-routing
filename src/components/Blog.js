@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import axios from 'axios'
+import axios from './axios'
 import { List } from 'antd';
 import BlogCard from './BlogCard'
 
 import './BlogStyle.css'
 
-export default function Blog(props) {
+export default function Blog({fetchUrl}) {
 
   const [blogs, setBlogs] = useState([])
-
-    axios.get('https://blog-api-tvh.herokuapp.com/api/blogs')
-      .then(result => {
-        setBlogs(result.data.results)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  useEffect(() => {
+    async function fetchData(){
+      const request = await axios.get(fetchUrl)
+      setBlogs(request.data.results)
+      return request
+    }
+    fetchData()
+  }, [fetchUrl])
   return (
     <List
       itemLayout="vertical"
